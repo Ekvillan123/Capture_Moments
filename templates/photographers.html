@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Available Photographers</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+  {% include 'navbar.html' %}
+
+  <div class="container py-5">
+    <h2 class="mb-4 text-center">📍 Meet Our Photographers</h2>
+
+    <!-- 🔍 Search by Location -->
+    <form method="GET" action="/show-photographers" class="row g-3 justify-content-center mb-5">
+      <div class="col-md-6">
+        <input type="text" name="location" class="form-control"
+               placeholder="Enter city or location"
+               value="{{ request.args.get('location', '') }}">
+      </div>
+      <div class="col-md-2">
+        <button type="submit" class="btn btn-primary w-100">Search</button>
+      </div>
+    </form>
+
+    <!-- 📸 Photographer Cards -->
+    <div class="row g-4">
+      {% if photographers %}
+        {% for p in photographers %}
+        <div class="col-md-4">
+          <div class="card h-100 shadow-sm">
+            {% if p.name.lower() == 'amit' %}
+              <img src="{{ url_for('static', filename='images/amit.jpg') }}" class="card-img-top" alt="Amit">
+            {% elif p.name.lower() == 'sana' %}
+              <img src="{{ url_for('static', filename='images/sana.jpg') }}" class="card-img-top" alt="Sana">
+            {% else %}
+              <img src="{{ url_for('static', filename='images/photo.jpg') }}" class="card-img-top" alt="{{ p.name }}">
+            {% endif %}
+            <div class="card-body">
+              <h5 class="card-title">{{ p.name }}</h5>
+              <p class="card-text text-muted">{{ ', '.join(p.skills) }}</p>
+
+              <!-- 🏙 Sample locations -->
+              {% if p.name.lower() == 'amit' %}
+                <p><strong>Location:</strong> Hyderabad</p>
+              {% elif p.name.lower() == 'sana' %}
+                <p><strong>Location:</strong> Mumbai</p>
+              {% elif p.name.lower() == 'robo' %}
+                <p><strong>Location:</strong> Bengaluru</p>
+              {% else %}
+                <p><strong>Location:</strong> Chennai</p>
+              {% endif %}
+
+              <a href="/book?photographer_id={{ p.id }}" class="btn btn-outline-primary mt-2 w-100">Book Now</a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      {% else %}
+        <div class="col-12 text-center">
+          <p class="lead">No photographers found for this location.</p>
+          <a href="/show-photographers" class="btn btn-secondary">Reset Search</a>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,18 @@
+<h2 class="text-center mt-4">Showing results for {{ category }} in {{ location }}</h2>
+<div class="row g-4 mt-3">
+  {% for p in results %}
+    <div class="col-md-4">
+      <div class="card h-100 shadow">
+        <img src="{{ url_for('static', filename='images/' ~ p.image) }}" class="card-img-top" alt="{{ p.name }}">
+        <div class="card-body">
+          <h5 class="card-title">{{ p.name }}</h5>
+          <p><strong>Skills:</strong> {{ p.skills | join(', ') }}</p>
+          <p><strong>Location:</strong> {{ p.location }}</p>
+          <a href="/book?id={{ p.id }}" class="btn btn-primary w-100">Book {{ p.name }}</a>
+        </div>
+      </div>
+    </div>
+  {% else %}
+    <p class="text-center">🚫 No photographers found matching your criteria.</p>
+  {% endfor %}
+</div>

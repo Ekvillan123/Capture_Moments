@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolios | Capture Moments</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #121212;
+      color: white;
+      font-family: 'Poppins', sans-serif;
+    }
+    .card {
+      background-color: #1e1e1e;
+      color: white;
+      border: none;
+    }
+    .card img {
+      height: 200px;
+      object-fit: cover;
+    }
+    .btn-warning {
+      color: #121212;
+    }
+    .testimonial {
+      background-color: #1e1e1e;
+      border-left: 5px solid #ffc107;
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
+    .form-control, .form-control:focus {
+      background-color: #1e1e1e;
+      color: white;
+      border: 1px solid #444;
+    }
+  </style>
+</head>
+<body>
+  <div class="container py-5">
+    <h1 class="text-center mb-4">📸 Meet Our Photographers</h1>
+
+    <!-- 🔍 Filter Dropdown -->
+    <div class="text-center mb-4">
+      <label for="skillFilter" class="form-label fs-5">Filter by Skill</label>
+      <select id="skillFilter" class="form-select w-auto d-inline-block">
+        <option value="all">All</option>
+        <option value="Weddings">Weddings</option>
+        <option value="Portraits">Portraits</option>
+        <option value="Street">Street</option>
+        <option value="Commercial">Commercial</option>
+        <option value="Products">Products</option>
+      </select>
+    </div>
+
+    <!-- 📷 Photographer Cards -->
+    <div class="row g-4">
+      <!-- Photographer 1 -->
+      <div class="col-md-4 photographer-card" data-skills="weddings,events">
+        <div class="card h-100 shadow-sm">
+          <img src="{{ url_for('static', filename='images/amit.jpg') }}" class="card-img-top" alt="Amit">
+          <div class="card-body">
+            <h5 class="card-title">Amit</h5>
+            <p class="card-text text-muted">Weddings, Events</p>
+            <p><strong>Available:</strong> Monday, Friday</p>
+            <a href="/book" class="btn btn-outline-warning mt-2 w-100">Book Now</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Photographer 2 -->
+      <div class="col-md-4 photographer-card" data-skills="portraits,street">
+        <div class="card h-100 shadow-sm">
+          <img src="{{ url_for('static', filename='images/sana.jpg') }}" class="card-img-top" alt="Sana">
+          <div class="card-body">
+            <h5 class="card-title">Sana</h5>
+            <p class="card-text text-muted">Portraits, Street</p>
+            <p><strong>Available:</strong> Tuesday, Saturday</p>
+            <a href="/book" class="btn btn-outline-warning mt-2 w-100">Book Now</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Photographer 3 -->
+      <div class="col-md-4 photographer-card" data-skills="commercial,products">
+        <div class="card h-100 shadow-sm">
+          <img src="{{ url_for('static', filename='images/photo.jpg') }}" class="card-img-top" alt="FocusFrame Co.">
+          <div class="card-body">
+            <h5 class="card-title">FocusFrame Co.</h5>
+            <p class="card-text text-muted">Commercial, Products</p>
+            <p><strong>Available:</strong> Wednesday, Sunday</p>
+            <a href="/book" class="btn btn-outline-warning mt-2 w-100">Book Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 💬 Testimonials -->
+    <section class="mt-5">
+      <h2 class="text-center mb-4">💬 What Clients Say</h2>
+      <div class="testimonial">
+        <p>“Amit made our wedding unforgettable. Every photo was magical!”</p>
+        <small>— Ayesha & Rohan</small>
+      </div>
+      <div class="testimonial">
+        <p>“Sana captured my personality perfectly in every portrait. Highly recommend!”</p>
+        <small>— Meera S.</small>
+      </div>
+      <div class="testimonial">
+        <p>“FocusFrame Co. helped elevate our product launch with stunning visuals.”</p>
+        <small>— Arjun, Brand Manager</small>
+      </div>
+    </section>
+
+    <!-- 📬 Contact Form -->
+    <section class="mt-5">
+      <h2 class="text-center mb-4">📬 Get in Touch</h2>
+      <form class="mx-auto" style="max-width: 600px;">
+        <div class="mb-3">
+          <label for="name" class="form-label">Your Name</label>
+          <input type="text" class="form-control" id="name" placeholder="Enter your name">
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email Address</label>
+          <input type="email" class="form-control" id="email" placeholder="Enter your email">
+        </div>
+        <div class="mb-3">
+          <label for="message" class="form-label">Message</label>
+          <textarea class="form-control" id="message" rows="4" placeholder="Tell us what you're looking for..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-warning">Send Message</button>
+      </form>
+    </section>
+
+    <!-- 🔙 Back to Home -->
+    <div class="text-center mt-5">
+      <a href="/" class="btn btn-outline-warning">← Back to Home</a>
+    </div>
+  </div>
+
+  <!-- 🔧 Filter Script -->
+  <script>
+    document.getElementById('skillFilter').addEventListener('change', function () {
+      const selected = this.value.toLowerCase();
+      const cards = document.querySelectorAll('.photographer-card');
+
+      cards.forEach(card => {
+        const skills = card.getAttribute('data-skills');
+        if (selected === 'all' || skills.includes(selected)) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

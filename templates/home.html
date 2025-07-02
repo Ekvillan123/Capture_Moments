@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Capture Moments | Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    body, html {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f8f9fa;
+    }
+    .hero {
+      background: url("{{ url_for('static', filename='images/hero-bg.jpg') }}") center center/cover no-repeat;
+      height: 100vh;
+      position: relative;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .overlay {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 1;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+      padding: 20px;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 700;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+    }
+    .form-control, .form-select {
+      background-color: rgba(255, 255, 255, 0.9);
+    }
+    .portfolio-section {
+      padding: 60px 20px;
+      background-color: #fff;
+    }
+    .card img {
+      height: 200px;
+      object-fit: cover;
+    }
+    .rating {
+      color: #ffc107;
+    }
+    footer {
+      background-color: #212529;
+    }
+  </style>
+</head>
+<body>
+
+  {% include 'navbar.html' %}
+
+  <!-- Hero Section -->
+  <div class="hero">
+    <div class="overlay"></div>
+    <div class="hero-content">
+      <h1>Capture Moments 📸</h1>
+      <p>Book trusted photographers. Treasure timeless stories.</p>
+      <form action="/search" method="GET" class="row g-2 justify-content-center">
+        <div class="col-md-4">
+          <select name="category" class="form-select" required>
+            <option value="">Select Category</option>
+            <option value="Wedding">Wedding</option>
+            <option value="Portrait">Portrait</option>
+            <option value="Street">Street</option>
+            <option value="Commercial">Commercial</option>
+            <option value="Product">Products</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <input type="text" name="location" class="form-control" placeholder="Enter city or zip code" required>
+        </div>
+        <div class="col-md-4">
+          <button type="submit" class="btn btn-warning w-100">Find Photographers</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Photographer Portfolio Section -->
+  <section class="portfolio-section">
+    <div class="container">
+      <h2 class="text-center mb-5">📷 Featured Photographers</h2>
+      <div class="row g-4">
+        <!-- Photographer 1 -->
+        <div class="col-md-4">
+          <div class="card h-100 shadow-sm">
+            <img src="{{ url_for('static', filename='images/amit.jpg') }}" class="card-img-top" alt="Emily Thompson">
+            <div class="card-body">
+              <h5 class="card-title">Emily Thompson</h5>
+              <p class="text-muted">Austin, TX • 10 years experience</p>
+              <p><strong>Specialties:</strong> Maternity, Newborn, Family</p>
+              <p><strong>Rate:</strong> $180–450/hr</p>
+              <p class="rating">⭐ 4.95 (156 reviews)</p>
+              <p>Specializing in capturing the beauty of life's most tender moments. With 10 years of experience, I create...</p>
+              <a href="/book" class="btn btn-outline-primary w-100">Book Emily</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Photographer 2 -->
+        <div class="col-md-4">
+          <div class="card h-100 shadow-sm">
+            <img src="{{ url_for('static', filename='images/sana.jpg') }}" class="card-img-top" alt="Sarah Chen">
+            <div class="card-body"> 
+              <h5 class="card-title">Sarah Chen</h5>
+              <p class="text-muted">San Francisco, CA • 8 years experience</p>
+              <p><strong>Specialties:</strong> Wedding, Portrait, Event</p>
+              <p><strong>Rate:</strong> $200–500/hr</p>
+              <p class="rating">⭐ 4.9 (127 reviews)</p>
+              <p>Award-winning photographer with 8 years of experience capturing life's most precious moments...</p>
+              <a href="/book" class="btn btn-outline-primary w-100">Book Sarah</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Photographer 3 -->
+        <div class="col-md-4">
+          <div class="card h-100 shadow-sm">
+            <img src="{{ url_for('static', filename='images/photo.jpg') }}" class="card-img-top" alt="Marcus Rodriguez">
+            <div class="card-body">
+              <h5 class="card-title">Marcus Rodriguez</h5>
+              <p class="text-muted">Los Angeles, CA • 6 years experience</p>
+              <p><strong>Specialties:</strong> Wedding, Corporate, Lifestyle</p>
+              <p><strong>Rate:</strong> $150–400/hr</p>
+              <p class="rating">⭐ 4.8 (89 reviews)</p>
+              <p>Creative photographer passionate about capturing authentic emotions and stunning visuals...</p>
+              <a href="/book" class="btn btn-outline-primary w-100">Book Marcus</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-white pt-5 pb-4 mt-5">
+    <html class="container text-md-left">
+      <body class="row text-md-left">
+
+        <!-- 🌐 Footer -->
+<footer class="bg-dark text-white pt-5 pb-4 mt-5">
+  <div class="container text-md-left">
+    <div class="row text-md-left">
+
+      <!-- About -->
+      <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+        <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Capture Moments</h5>
+        <p>We connect you with trusted photographers to capture your most cherished memories — from weddings to portraits and everything in between.</p>
+      </div>
+
+      <!-- Contact Info -->
+      <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+        <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Contact</h5>
+        <p><i class="bi bi-geo-alt-fill"></i> Tekkali, Andhra Pradesh, India</p>
+        <p><i class="bi bi-envelope-fill"></i> support@capturemoments.com</p>
+        <p><i class="bi bi-telephone-fill"></i> +91 98765 43210</p>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+        <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Quick Links</h5>
+        <p><a href="/about" class="text-white text-decoration-none">About Us</a></p>
+        <p><a href="/contact" class="text-white text-decoration-none">Contact</a></p>
+        <p><a href="/book" class="text-white text-decoration-none">Book a Photographer</a></p>
+        <p><a href="/faq" class="text-white text-decoration-none">FAQs</a></p>
+      </div>
+
+      <!-- Newsletter & Social -->
+      <div class="col-md-3 col-lg-4 col-xl-4 mx-auto mt-3">
+        <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Stay Connected</h5>
+        <form>
+          <div class="input-group mb-3">
+            <input type="email" class="form-control" placeholder="Your email" aria-label="Email">
+            <button class="btn btn-warning" type="submit">Subscribe</button>
+          </div>
+        </form>
+        <div class="mt-3">
+          <a href="#" class="text-white me-3 fs-5" target="_blank"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="text-white me-3 fs-5" target="_blank"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="text-white me-3 fs-5" target="_blank"><i class="bi bi-twitter"></i></a>
+          <a href="#" class="text-white fs-5" target="_blank"><i class="bi bi-linkedin"></i></a>
+        </div>
+      </div>
+
+    </div>
+
+    <hr class="mb-4">
+
+    <div class="row align-items-center">
+      <div class="col-md-7 col-lg-8">
+        <p class="text-white">© 2025 Capture Moments. All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
