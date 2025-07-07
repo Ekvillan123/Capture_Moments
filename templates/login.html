@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
   <title>Login | Capture Moments</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
@@ -41,6 +43,10 @@
       border: none;
       border-radius: 6px;
       cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: gold;
     }
     .toggle-btns {
       margin-bottom: 20px;
@@ -50,6 +56,10 @@
       margin: 2px;
       background: white;
       color: black;
+      border: none;
+      padding: 10px;
+      border-radius: 6px;
+      cursor: pointer;
     }
     .toggle-btns button.active {
       background: yellow;
@@ -75,7 +85,7 @@
     </form>
 
     <!-- Sign Up Form -->
-    <form id="signupForm" class="hidden" method="POST" onsubmit="return validateSignup()">
+    <form id="signupForm" class="hidden" method="POST" action="/signup" onsubmit="return validateSignup()">
       <h2>Sign Up</h2>
       <input type="text" name="newUsername" placeholder="Username" required>
       <input type="password" id="newPassword" name="newPassword" placeholder="Password" required>
