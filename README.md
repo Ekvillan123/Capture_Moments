@@ -16,9 +16,7 @@ Follow these steps to get Capture Moments up and running on your local machine.
 Prerequisites
 Make sure you have Python 3.8+ and pip installed.
 
-Clone the Repository
-git clone https://your-repository-link.git
-cd capture-moments
+
 
 Create a Virtual Environment (Recommended)
 python3 -m venv venv
